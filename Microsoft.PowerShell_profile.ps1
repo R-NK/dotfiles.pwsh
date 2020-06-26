@@ -28,3 +28,19 @@ Add-Type -TypeDefinition $code -Language CSharp
 # Beep音を無効化
 Set-PSReadlineOption -BellStyle None
 
+function gh {
+	cd $(ghq list -p | peco)
+}
+if (Test-Path alias:cat) {
+	del alias:cat
+}
+function cat {
+	bat $args --paging=never
+}
+
+if (Test-Path alias:less) {
+	del alias:less
+}
+function less {
+	bat $args
+}
